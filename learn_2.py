@@ -1,9 +1,5 @@
-from subprocess import check_output
-
 import inline as inline
 import matplotlib
-
-print(check_output(["ls", "./"]).decode("utf8"))
 
 import pandas as pd
 import numpy as np
@@ -49,6 +45,8 @@ data['grade'] = data['grade'].astype('category', ordered=False)
 data['zipcode'] = data['zipcode'].astype('category', ordered=False)
 
 print(data.dtypes)
+
+print('here')
 
 # sns.set_style()
 sns.regplot(x='sqft_living', y='price', data=data)
