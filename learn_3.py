@@ -131,6 +131,7 @@ train_['log_price'] = np.log(train['price'])
 
 # now for testing different regression models
 
+# Models and RMSE for later summary
 Models = []
 RMSE = []
 
