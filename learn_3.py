@@ -2,16 +2,16 @@ import pandas as pd
 import numpy as np
 
 df = pd.read_csv('kc_house_data.csv')
-print(df.shape)
+# print(df.shape)
 
-print(df.head())
+# print(df.head())
 
 del df['id']
 
 NA_Count = pd.DataFrame({'Sum of NA': df.isnull().sum()}).sort_values(by=['Sum of NA'], ascending=[0])
 NA_Count['Percentage'] = NA_Count['Sum of NA'] / df.shape[1]
 
-print(sum(NA_Count['Percentage']))
+# print(sum(NA_Count['Percentage']))
 
 from sklearn.model_selection import train_test_split
 
@@ -26,10 +26,10 @@ from ggplot import *
 lonlat = ggplot(train, aes(x='long', y='lat', color='price')) + geom_point() + scale_color_gradient(low='white',
                                                                                                     high='red') + ggtitle(
     'Color Map of Price')
-print(lonlat)
+# print(lonlat)
 
 lonprice = ggplot(train, aes(x='long', y='price')) + geom_point() + ggtitle('Price VS Longitude')
-print(lonprice)
+# print(lonprice)
 
 
 def centralize_long(lon):
@@ -40,16 +40,16 @@ train['norm_lon'] = train['long'].apply(lambda x: centralize_long(x))
 test['norm_lon'] = test['long'].apply(lambda x: centralize_long(x))
 
 lonprice2 = ggplot(train, aes(x='norm_lon', y='price')) + geom_point() + ggtitle('Price VS Centered Longitude')
-print(lonprice2)
+# print(lonprice2)
 
 latprice = ggplot(train, aes(x='lat', y='price')) + geom_point() + stat_smooth() + ggtitle('Price VS Latitude')
-# print(latprice)
+# # print(latprice)
 
 zipprice = ggplot(train, aes(x='zipcode', y='price')) + geom_point() + ggtitle('ZipCode VS Price')
-print(zipprice)
+# print(zipprice)
 
 latlonzip = ggplot(train, aes(x='long', y='lat', color='zipcode')) + geom_point() + ggtitle('Long-Lat VS ZipCode')
-print(latlonzip)
+# print(latlonzip)
 
 
 def zip2area(zipcode):
@@ -100,7 +100,7 @@ train['date'] = pd.to_datetime(train['date'])
 test['date'] = pd.to_datetime(test['date'])
 
 dateprice = ggplot(train, aes(x='date', y='price')) + geom_line() + stat_smooth() + ggtitle('Date VS Price')
-print(dateprice)
+# print(dateprice)
 
 min_date = min(test['date'])
 
@@ -127,3 +127,10 @@ fig = sm.qqplot(np.log(train['price']))
 plt.show()
 
 train_['log_price'] = np.log(train['price'])
+
+
+# now for testing different regression models
+
+Models = []
+RMSE = []
+
