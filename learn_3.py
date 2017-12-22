@@ -93,8 +93,8 @@ def box_plot(var):
     return print(pt)
 
 
-for each in cat:
-    box_plot(each)
+# for each in cat:
+#     box_plot(each)
 
 train['date'] = pd.to_datetime(train['date'])
 test['date'] = pd.to_datetime(test['date'])
