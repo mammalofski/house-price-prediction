@@ -23,6 +23,7 @@ degree = model.best_params_
 print(degree)
 pred = np.exp(model.predict(test_))
 Accuracy = sqrt(mse(pred, test['price']))
-print('==' * 20 + ' RMSE: ' + str(Accuracy) + ' ' + '==' * 20)
+print('\nRMSE for elastic net regression : ', Accuracy)
+
 RMSE.append(Accuracy)
 Models.append('ElasticNet Regression')

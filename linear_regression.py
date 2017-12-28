@@ -9,7 +9,7 @@ reg = LinearRegression(n_jobs=-1)
 reg.fit(train_[columns], train_['log_price'])
 pred = np.exp(reg.predict(test_))
 Accuracy = sqrt(mse(pred, test['price']))
-print('==' * 20 + 'RMSE: ' + str(Accuracy) + '==' * 20)
+print('\nRMSE for linear regression : ', Accuracy)
 
 
 

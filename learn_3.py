@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 
 df = pd.read_csv('kc_house_data.csv')
-print(df.shape)
+# print(df.shape)
 
-print(df.head())
+# print(df.head())
 
 del df['id']
 
@@ -31,6 +31,12 @@ print(lonlat)
 lonprice = ggplot(train, aes(x='long', y='price')) + geom_point() + ggtitle('Price VS Longitude')
 print(lonprice)
 
+bedroom_price = ggplot(train, aes(x='bedrooms', y='price')) + geom_point() + ggtitle('Price VS No. of bedrooms')
+print(bedroom_price)
+
+year_built_price = ggplot(train, aes(x='yr_built', y='price')) + geom_point() + ggtitle('Price VS year built')
+print(year_built_price)
+
 
 def centralize_long(lon):
     return np.abs(lon + 122.25) * -1
@@ -42,8 +48,8 @@ test['norm_lon'] = test['long'].apply(lambda x: centralize_long(x))
 lonprice2 = ggplot(train, aes(x='norm_lon', y='price')) + geom_point() + ggtitle('Price VS Centered Longitude')
 print(lonprice2)
 
-latprice = ggplot(train, aes(x='lat', y='price')) + geom_point() + stat_smooth() + ggtitle('Price VS Latitude')
-print(latprice)
+# latprice = ggplot(train, aes(x='lat', y='price')) + geom_point() + stat_smooth() + ggtitle('Price VS Latitude')
+# print(latprice)
 
 zipprice = ggplot(train, aes(x='zipcode', y='price')) + geom_point() + ggtitle('ZipCode VS Price')
 print(zipprice)
@@ -85,6 +91,7 @@ plt.show()
 
 corr = con_train.corr()
 corr.style.background_gradient(cmap='viridis', low=.5, high=0).highlight_null('red')
+print(corr)
 
 
 def box_plot(var):
@@ -93,14 +100,14 @@ def box_plot(var):
     return print(pt)
 
 
-# for each in cat:
-#     box_plot(each)
+for each in cat:
+    box_plot(each)
 
 train['date'] = pd.to_datetime(train['date'])
 test['date'] = pd.to_datetime(test['date'])
 
-dateprice = ggplot(train, aes(x='date', y='price')) + geom_line() + stat_smooth() + ggtitle('Date VS Price')
-print(dateprice)
+# dateprice = ggplot(train, aes(x='date', y='price')) + geom_line() + stat_smooth() + ggtitle('Date VS Price')
+# print(dateprice)
 
 min_date = min(test['date'])
 
@@ -121,10 +128,10 @@ test_['Area'] = pd.factorize(test_['Area'], sort=True)[0]
 import statsmodels.api as sm
 
 fig = sm.qqplot(train['price'])
-plt.show()
+# plt.show()
 
 fig = sm.qqplot(np.log(train['price']))
-plt.show()
+# plt.show()
 
 train_['log_price'] = np.log(train['price'])
 
